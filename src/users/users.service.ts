@@ -12,29 +12,36 @@ import { LoginDto } from './dto/login.dto';
 import { RegisterDto } from './dto/register.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { CreateUserDto } from './dto/create-user.dto';
+import { JwtService } from '@nestjs/jwt';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(UserEntity)
     private usersRepository: Repository<UserEntity>,
+    private readonly jwtService: JwtService,
   ) {}
 
-  async signup(registerDto: RegisterDto): Promise<UserEntity> {
+  async signup(registerDto: RegisterDto): Promise<{user: UserEntity; token: string}> {
     const userExists = await this.findUserByUsername(registerDto.username);
 
     if (userExists) {
-      throw new BadRequestException('Email is not available');
+      throw new BadRequestException('Username is not available');
     }
 
-    registerDto.password = await hash(registerDto.password, 10);
+    registerDto.password = await bcrypt.hash(registerDto.password, 10);
 
     let user = this.usersRepository.create(registerDto);
 
     user = await this.usersRepository.save(user);
 
-    return user;
+    const payload = { username: user.username, sub: user.id };
+    const token = this.jwtService.sign(payload);
+
+    return { user, token };
   }
+  // }
 
   async signin(userSignInDto: LoginDto): Promise<UserEntity> {
     const userExists = await this.usersRepository

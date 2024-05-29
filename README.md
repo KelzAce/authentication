@@ -1,73 +1,229 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+<!-- Back to Top Navigation Anchor -->
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+<a name="readme-top"></a>
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+<!-- Project Shields -->
+<div align="center">
+  
+  [![Contributors][contributors-shield]][contributors-url]
+  [![Forks][forks-shield]][forks-url]
+  [![Stargazers][stars-shield]][stars-url]
+  [![Issues][issues-shield]][issues-url]
+  [![MIT License][license-shield]][license-url]
+  [![Twitter][twitter-shield]][twitter-url]
+</div>
 
-## Description
+<div>
+  <p align="center">
+    <a href="https://github.com/KelzAce/authenticaation#readme"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <!-- <a href="https://blogolicious.cyclic.app/">Demo</a> -->
+    ·
+    <a href="https://github.com/KelzAce/authentication/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/KelzAce/authentication/issues">Request Feature</a>
+  </p>
+</div>
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+<!-- About the API -->
 
-## Installation
+## Forexxx
 
-```bash
-$ npm install
+&mdash; a wonderful Authentication API built by <a href="https://www.github.com/KelzAce">Ikechi</a>.
+
+<p align="right"><a href="#readme-top">back to top</a></p>
+
+### Built With:
+
+<div align="center">
+
+![Javascript][javascript]
+![Node.js][node]
+![Nest.js][nest]
+
+</div>
+
+<p align="right"><a href="#readme-top">back to top</a></p>
+
+---
+
+<!-- Project Requirements -->
+
+## Requirements
+
+<details>
+
+<summary> <strong>Requirements for the project</strong> </summary>
+
+- [x] A GitHub repository.
+- [x] A Postman collection for API testing and exploration.
+
+<p align="right"><a href="#readme-top">back to top</a></p>
+
+---
+
+</details>
+
+<br>
+
+## Development
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/en/download/)
+- [Nest.js](https://nestjs.com/)
+
+#### Clone this repo
+
+```sh
+git clone https://github.com/KelzAce/authentication.git
 ```
 
-## Running the app
+#### Install project dependencies
 
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+```sh
+npm install
 ```
 
-## Test
+or
 
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+```sh
+yarn install
 ```
 
-## Support
+#### Update .env with [example.env](https://github.com/KelzAce/authentication/blob/master/example.env)
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+#### Run a development server for each application
 
-## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+#### Api-gateway
 
-## License
+```sh
+npm run start:dev
+```
 
-Nest is [MIT licensed](LICENSE).
+
+#### Auth/User Application
+
+```sh
+npm run start:dev 
+```
+
+or
+
+
+#### Auth/User Application
+```sh
+yarn run start:dev 
+```
+
+
+#### For testing, run
+
+```sh
+npm run test
+```
+
+or
+
+```sh
+yarn run test
+```
+
+#### Entities
+
+#### User
+
+
+| field       |  data_type         | constraints      |
+| ----------- | ------------------ | ---------------- |
+| id          | number             | required, unique |
+| username    | string             | required         |
+| password    | string             | required         |
+
+
+<p align="right"><a href="#readme-top">back to top</a></p>
+
+---
+
+### Register a User
+
+- Route: localhost:3000/api/v1/users/signin
+- Method: POST
+
+:point_down: Body
+
+```json
+{
+  "username": "john@gmail.com",
+  "password": "Password0!"
+}
+```
+
+:point_down: Response
+
+```json
+{
+  "status": "success",
+  "data": {
+    "username": "john@gmail.com",
+    "password": "sdhfvbiwegdviqwueiqcbie",
+    "_id": { " "}
+  }
+}
+```
+
+<p align="right"><a href="#readme-top">back to top</a></p>
+
+
+
+### Logging in
+
+- Route: localhost:3000/api/v1/users/signin
+- Method: POST
+
+:point_down: Body
+
+```json
+{
+  "username": "mightyjoe",
+  "password": "Password0!"
+}
+```
+
+:point_down: Response
+
+```json
+{
+  "token": {token},
+  "username": "mightyjoe",
+  "name": "John"
+}
+```
+
+<p align="right"><a href="#readme-top">back to top</a></p>
+
+---
+
+
+<p align="right"><a href="#readme-top">back to top</a></p>
+<!-- Markdown Links & Images -->
+
+[contributors-shield]: https://img.shields.io/github/contributors/KelzAce/foreeex.svg?style=for-the-badge
+[contributors-url]: https://github.com/KelzAce/foreeex/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/KelzAce/foreeex.svg?style=for-the-badge
+[forks-url]: https://github.com/KelzAce/foreeex/tree/master/network/members
+[stars-shield]: https://img.shields.io/github/stars/KelzAce/foreeex.svg?style=for-the-badge
+[stars-url]: https://github.com/KelzAce/foreeex/stargazers
+[issues-shield]: https://img.shields.io/github/issues/KelzAce/foreeex.svg?style=for-the-badge
+[issues-url]: https://github.com/KelzAce/foreeex/issues
+[license-shield]: https://img.shields.io/github/license/KelzAce/foreeex.svg?style=for-the-badge
+[license-url]: https://github.com/KelzAce/foreeex/blob/master/LICENSED.md
+[twitter-shield]: https://img.shields.io/badge/-@Kelzgod-1ca0f1?style=for-the-badge&logo=twitter&logoColor=white&link=https://twitter.com/Kelzgod
+[twitter-url]: https://twitter.com/Kelzgod
+[javascript]: https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1C
+[node]: https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white
+[Nest]: https://img.shields.io/badge/nest.js-%23404d59.svg?style=for-the-badge&logo=nest&logoColor=%2361DAFB
+[Docker]: https://img.shields.io/badge/docker.io-%23404d59.svg?style=for-the-badge&logo=nest&logoColor=%2361DAFB
+[Postgres]: https://img.shields.io/badge/POSTGRESQL-%234ea94b.svg?style=for-the-badge&logo=posgresdb&logoColor=white

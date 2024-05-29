@@ -22,10 +22,11 @@ export class UsersController {
 
   @Post('signup')
   async signup(
-    @Body() userSignUpDto: RegisterDto,
-  ): Promise<{ user: UserEntity }> {
+    @Body() registerDto: RegisterDto,
+  ): Promise<{ user: UserEntity, token: string }> {
+    const { user, token } = await this.usersService.signup(registerDto);
     return {
-      user: await this.usersService.signup(userSignUpDto),
+      user, token
     };
   }
 
