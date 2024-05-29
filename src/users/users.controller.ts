@@ -43,33 +43,28 @@ export class UsersController {
     return { accessToken, user };
   }
 
-  @Post()
-  create(@Body() createUserDto: CreateUserDto) {
-    // return this.usersService.create(createUserDto);
-    return 'Hi';
-  }
 
-  // @AuthorizeRoles(Roles.ADMIN)
-  @UseGuards(AuthenticationGuard, AuthorizeGuard([Roles.ADMIN]))
-  @Get('all')
-  async findAll(): Promise<UserEntity[]> {
-    return await this.usersService.findAll();
-  }
+  // // @AuthorizeRoles(Roles.ADMIN)
+  // @UseGuards(AuthenticationGuard, AuthorizeGuard([Roles.ADMIN]))
+  // @Get('all')
+  // async findAll(): Promise<UserEntity[]> {
+  //   return await this.usersService.findAll();
+  // }
 
-  @Get('single/:id')
-  async findOne(@Param('id') id: string): Promise<UserEntity> {
-    return await this.usersService.findOne(+id);
-  }
+  // @Get('single/:id')
+  // async findOne(@Param('id') id: string): Promise<UserEntity> {
+  //   return await this.usersService.findOne(+id);
+  // }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.usersService.update(+id, updateUserDto);
-  }
+  // @Patch(':id')
+  // update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+  //   return this.usersService.update(+id, updateUserDto);
+  // }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.usersService.remove(+id);
-  }
+  // @Delete(':id')
+  // remove(@Param('id') id: string) {
+  //   return this.usersService.remove(+id);
+  // }
 
 //   @UseGuards(AuthenticationGuard)
 //   @Get('me')

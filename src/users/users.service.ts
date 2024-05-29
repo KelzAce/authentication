@@ -42,7 +42,7 @@ export class UsersService {
     const userExists = await this.usersRepository
       .createQueryBuilder('users')
       .addSelect('users.password')
-      .where('users.email=:email', { email: userSignInDto.username })
+      .where('users.username=:email', { username: userSignInDto.username })
       .getOne();
 
     if (!userExists) {
