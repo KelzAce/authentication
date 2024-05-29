@@ -9,11 +9,9 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
-import { UserSignUpDto } from './dto/user-signup.dto';
+import { RegisterDto } from './dto/register.dto';
+import {LoginDto} from './dto/login.dto'
 import { UserEntity } from './entities/user.entity';
-import { UserSignInDto } from './dto/user-signin.dto';
 import { AuthenticationGuard } from 'src/utility/guards/authentication.guard';
 import { Roles } from 'src/utility/common/user-roles.enum';
 import { AuthorizeGuard } from 'src/utility/guards/authorization.guard';
@@ -24,7 +22,7 @@ export class UsersController {
 
   @Post('signup')
   async signup(
-    @Body() userSignUpDto: UserSignUpDto,
+    @Body() userSignUpDto: RegisterDto,
   ): Promise<{ user: UserEntity }> {
     return {
       user: await this.usersService.signup(userSignUpDto),
@@ -32,7 +30,7 @@ export class UsersController {
   }
 
   @Post('signin')
-  async signin(@Body() userSignInDto: UserSignInDto): Promise<{
+  async signin(@Body() userSignInDto: LoginDto): Promise<{
     accessToken: string;
     user: UserEntity;
   }> {

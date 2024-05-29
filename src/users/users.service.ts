@@ -3,15 +3,15 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from './entities/user.entity';
 import { Repository } from 'typeorm';
-import { UserSignUpDto } from './dto/user-signup.dto';
 import { hash, compare } from 'bcrypt';
-import { UserSignInDto } from './dto/user-signin.dto';
 import { sign } from 'jsonwebtoken';
+import { LoginDto } from './dto/login.dto';
+import { RegisterDto } from './dto/register.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
+import { CreateUserDto } from './dto/create-user.dto';
 
 @Injectable()
 export class UsersService {
@@ -20,25 +20,23 @@ export class UsersService {
     private usersRepository: Repository<UserEntity>,
   ) {}
 
-  async signup(userSignUpDto: UserSignUpDto): Promise<UserEntity> {
-    const userExists = await this.findUserByEmail(userSignUpDto.username);
+  async signup(registerDto: RegisterDto): Promise<UserEntity> {
+    const userExists = await this.findUserByUsername(registerDto.username);
 
     if (userExists) {
       throw new BadRequestException('Email is not available');
     }
 
-    userSignUpDto.password = await hash(userSignUpDto.password, 10);
+    registerDto.password = await hash(registerDto.password, 10);
 
-    let user = this.usersRepository.create(userSignUpDto);
+    let user = this.usersRepository.create(registerDto);
 
     user = await this.usersRepository.save(user);
-
-    delete user.password;
 
     return user;
   }
 
-  async signin(userSignInDto: UserSignInDto): Promise<UserEntity> {
+  async signin(userSignInDto: LoginDto): Promise<UserEntity> {
     const userExists = await this.usersRepository
       .createQueryBuilder('users')
       .addSelect('users.password')
@@ -89,15 +87,15 @@ export class UsersService {
     return `This action removes a #${id} user`;
   }
 
-  async findUserByEmail(email: string) {
-    return await this.usersRepository.findOneBy({ email });
+  async findUserByUsername(username: string) {
+    return await this.usersRepository.findOneBy({ username });
   }
 
   async accessToken(user: UserEntity): Promise<string> {
     return sign(
       {
         id: user.id,
-        email: user.email,
+        username: user.username,
       },
       process.env.ACCESS_TOKEN_SECRET_KEY,
       { expiresIn: process.env.ACCESS_TOKEN_EXPIRE_IN },
