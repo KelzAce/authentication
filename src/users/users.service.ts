@@ -3,109 +3,82 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { UserEntity } from './entities/user.entity';
-import { Repository } from 'typeorm';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 import { hash, compare } from 'bcrypt';
-import { sign } from 'jsonwebtoken';
+import { JwtService } from '@nestjs/jwt';
 import { LoginDto } from './dto/login.dto';
 import { RegisterDto } from './dto/register.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
-import { CreateUserDto } from './dto/create-user.dto';
-import { JwtService } from '@nestjs/jwt';
-import * as bcrypt from 'bcrypt';
+import { User } from './entities/user.schema';
 
 @Injectable()
 export class UsersService {
   constructor(
-    @InjectRepository(UserEntity)
-    private usersRepository: Repository<UserEntity>,
+    @InjectModel(User.name) private userModel: Model<User>,
     private readonly jwtService: JwtService,
   ) {}
 
-  async signup(registerDto: RegisterDto): Promise<{user: UserEntity; token: string}> {
-    const userExists = await this.findUserByUsername(registerDto.username);
+  async signup(
+    registerDto: RegisterDto,
+  ): Promise<{ user: User; token: string }> {
+    const userExists = await this.userModel.findOne({
+      username: registerDto.username,
+    });
 
     if (userExists) {
       throw new BadRequestException('Username is not available');
     }
 
-    registerDto.password = await bcrypt.hash(registerDto.password, 10);
+    const hashedPassword = await hash(registerDto.password, 10);
+    const createdUser = new this.userModel({
+      ...registerDto,
+      password: hashedPassword,
+    });
 
-    let user = this.usersRepository.create(registerDto);
-
-    user = await this.usersRepository.save(user);
-
-    const payload = { username: user.username, sub: user.id };
-    const token = this.jwtService.sign(payload);
+    const user = await createdUser.save();
+    const token = this.jwtService.sign({
+      username: user.username,
+      sub: user._id,
+    });
 
     return { user, token };
   }
-  // }
 
-  async signin(userSignInDto: LoginDto): Promise<UserEntity> {
-    const userExists = await this.usersRepository
-      .createQueryBuilder('users')
-      .addSelect('users.password')
-      .where('users.username=:email', { username: userSignInDto.username })
-      .getOne();
+  async signin(loginDto: LoginDto): Promise<{ user: User; token: string }> {
+    const user = await this.userModel
+      .findOne({ username: loginDto.username })
+      .select('+password');
 
-    if (!userExists) {
+    if (!user) {
       throw new BadRequestException('Bad Credentials');
     }
 
-    const matchPassword = await compare(
-      userSignInDto.password,
-      userExists.password,
-    );
+    const matchPassword = await compare(loginDto.password, user.password);
 
     if (!matchPassword) {
       throw new BadRequestException('Bad Credentials');
     }
 
-    delete userExists.password;
+    user.password = undefined;
+    const token = this.jwtService.sign({
+      username: user.username,
+      sub: user._id,
+    });
 
-    return userExists;
+    return { user, token };
   }
 
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+  async findAll(): Promise<User[]> {
+    return this.userModel.find().exec();
   }
 
-  async findAll(): Promise<UserEntity[]> {
-    return await this.usersRepository.find();
-  }
-
-  async findOne(id: number): Promise<UserEntity> {
-    const user = await this.usersRepository.findOneBy({ id });
+  async findOne(id: string): Promise<User> {
+    const user = await this.userModel.findById(id).exec();
 
     if (!user) {
-      throw new NotFoundException('User Not Found. ');
+      throw new NotFoundException('User Not Found');
     }
 
     return user;
-  }
-
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} user`;
-  }
-
-  async findUserByUsername(username: string) {
-    return await this.usersRepository.findOneBy({ username });
-  }
-
-  async accessToken(user: UserEntity): Promise<string> {
-    return sign(
-      {
-        id: user.id,
-        username: user.username,
-      },
-      process.env.ACCESS_TOKEN_SECRET_KEY,
-      { expiresIn: process.env.ACCESS_TOKEN_EXPIRE_IN },
-    );
   }
 }

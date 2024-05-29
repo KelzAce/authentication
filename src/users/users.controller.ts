@@ -1,20 +1,12 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-  UseGuards,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, UseGuards } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { RegisterDto } from './dto/register.dto';
-import {LoginDto} from './dto/login.dto'
-import { UserEntity } from './entities/user.entity';
+import { LoginDto } from './dto/login.dto';
+import { User } from './entities/user.schema';
 import { AuthenticationGuard } from 'src/utility/guards/authentication.guard';
 import { Roles } from 'src/utility/common/user-roles.enum';
-import { AuthorizeGuard } from 'src/utility/guards/authorization.guard';
+import { RolesGuard } from 'src/utility/guards/roles.guard';
+import { RolesDecorator } from 'src/utility/decorator/roles.decorator';
 
 @Controller('users')
 export class UsersController {
@@ -23,51 +15,23 @@ export class UsersController {
   @Post('register')
   async signup(
     @Body() registerDto: RegisterDto,
-  ): Promise<{ user: UserEntity, token: string }> {
+  ): Promise<{ user: User; token: string }> {
     const { user, token } = await this.usersService.signup(registerDto);
-    return {
-      user, token
-    };
+    return { user, token };
   }
 
   @Post('login')
-  async signin(@Body() userSignInDto: LoginDto): Promise<{
-    accessToken: string;
-    user: UserEntity;
-  }> {
-    const user = await this.usersService.signin(userSignInDto);
-
-    const accessToken = await this.usersService.accessToken(user);
-
-    return { accessToken, user };
+  async signin(
+    @Body() loginDto: LoginDto,
+  ): Promise<{ user: User; token: string }> {
+    const { user, token } = await this.usersService.signin(loginDto);
+    return { user, token };
   }
 
-
-  // @AuthorizeRoles(Roles.ADMIN)
-  @UseGuards(AuthenticationGuard, AuthorizeGuard([Roles.ADMIN]))
   @Get('all')
-  async findAll(): Promise<UserEntity[]> {
-    return await this.usersService.findAll();
+  @UseGuards(AuthenticationGuard, RolesGuard)
+  @RolesDecorator(Roles.ADMIN)
+  async findAll(): Promise<User[]> {
+    return this.usersService.findAll();
   }
-
-  // @Get('single/:id')
-  // async findOne(@Param('id') id: string): Promise<UserEntity> {
-  //   return await this.usersService.findOne(+id);
-  // }
-
-  // @Patch(':id')
-  // update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-  //   return this.usersService.update(+id, updateUserDto);
-  // }
-
-  // @Delete(':id')
-  // remove(@Param('id') id: string) {
-  //   return this.usersService.remove(+id);
-  // }
-
-//   @UseGuards(AuthenticationGuard)
-//   @Get('me')
-//   getProfile(@CurrentUser() currentUser: UserEntity) {
-//     return currentUser;
-//   }
 }
