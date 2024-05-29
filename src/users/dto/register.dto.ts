@@ -1,4 +1,3 @@
-// src/auth/dto/register.dto.ts
 import { IsEmail, IsString, MinLength, Matches } from 'class-validator';
 
 export class RegisterDto {
@@ -11,4 +10,6 @@ export class RegisterDto {
     message: 'Password too weak',
   })
   password: string;
+
+  name?: string
 }

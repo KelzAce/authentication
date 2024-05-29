@@ -1,34 +1,13 @@
-import { Roles } from 'src/utility/common/user-roles.enum';
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  OneToMany,
-  PrimaryGeneratedColumn,
-  Timestamp,
-  UpdateDateColumn,
-} from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
-@Entity('users')
+@Entity()
 export class UserEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
-  name?: string;
-
   @Column({ unique: true })
   username: string;
 
-  @Column({ select: false })
-  password?: string;
-
-  @Column({ type: 'enum', enum: Roles, array: true, default: [Roles.USER] })
-  roles: Roles[];
-
-  @CreateDateColumn()
-  createdAt: Timestamp;
-
-  @UpdateDateColumn()
-  updatedAt: Timestamp;
+  @Column()
+  password: string;
 }
