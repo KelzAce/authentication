@@ -3,7 +3,7 @@ import { IsEmail, IsNotEmpty, IsString, MinLength } from 'class-validator';
 export class UserSignInDto {
   @IsNotEmpty({ message: 'Email cannot be null' })
   @IsEmail({}, { message: 'Please provide a valid email' })
-  email: string;
+  username: string;
 
   @IsNotEmpty({ message: 'Password cannot be null' })
   @MinLength(5, { message: 'Password minimum character should be 5' })

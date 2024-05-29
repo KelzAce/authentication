@@ -21,7 +21,7 @@ export class UsersService {
   ) {}
 
   async signup(userSignUpDto: UserSignUpDto): Promise<UserEntity> {
-    const userExists = await this.findUserByEmail(userSignUpDto.email);
+    const userExists = await this.findUserByEmail(userSignUpDto.username);
 
     if (userExists) {
       throw new BadRequestException('Email is not available');
@@ -42,7 +42,7 @@ export class UsersService {
     const userExists = await this.usersRepository
       .createQueryBuilder('users')
       .addSelect('users.password')
-      .where('users.email=:email', { email: userSignInDto.email })
+      .where('users.email=:email', { email: userSignInDto.username })
       .getOne();
 
     if (!userExists) {
