@@ -20,7 +20,7 @@ import { AuthorizeGuard } from 'src/utility/guards/authorization.guard';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Post('signup')
+  @Post('register')
   async signup(
     @Body() registerDto: RegisterDto,
   ): Promise<{ user: UserEntity, token: string }> {
@@ -30,7 +30,7 @@ export class UsersController {
     };
   }
 
-  @Post('signin')
+  @Post('login')
   async signin(@Body() userSignInDto: LoginDto): Promise<{
     accessToken: string;
     user: UserEntity;

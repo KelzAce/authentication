@@ -149,7 +149,7 @@ yarn run test
 
 ### Register a User
 
-- Route: localhost:3000/api/v1/users/signin
+- Route: localhost:3000/api/v1/users/register
 - Method: POST
 
 :point_down: Body
@@ -180,7 +180,7 @@ yarn run test
 
 ### Logging in
 
-- Route: localhost:3000/api/v1/users/signin
+- Route: localhost:3000/api/v1/users/login
 - Method: POST
 
 :point_down: Body
