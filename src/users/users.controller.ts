@@ -42,12 +42,12 @@ export class UsersController {
   }
 
 
-  // // @AuthorizeRoles(Roles.ADMIN)
-  // @UseGuards(AuthenticationGuard, AuthorizeGuard([Roles.ADMIN]))
-  // @Get('all')
-  // async findAll(): Promise<UserEntity[]> {
-  //   return await this.usersService.findAll();
-  // }
+  // @AuthorizeRoles(Roles.ADMIN)
+  @UseGuards(AuthenticationGuard, AuthorizeGuard([Roles.ADMIN]))
+  @Get('all')
+  async findAll(): Promise<UserEntity[]> {
+    return await this.usersService.findAll();
+  }
 
   // @Get('single/:id')
   // async findOne(@Param('id') id: string): Promise<UserEntity> {
