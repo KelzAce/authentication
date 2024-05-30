@@ -239,18 +239,18 @@ This project was made possible by:
 <p align="right"><a href="#readme-top">back to top</a></p>
 <!-- Markdown Links & Images -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/tobisupreme/blogolicious.svg?style=for-the-badge
-[contributors-url]: https://github.com/tobisupreme/blogolicious/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/tobisupreme/blogolicious.svg?style=for-the-badge
-[forks-url]: https://github.com/tobisupreme/blogolicious/network/members
-[stars-shield]: https://img.shields.io/github/stars/tobisupreme/blogolicious.svg?style=for-the-badge
-[stars-url]: https://github.com/tobisupreme/blogolicious/stargazers
-[issues-shield]: https://img.shields.io/github/issues/tobisupreme/blogolicious.svg?style=for-the-badge
-[issues-url]: https://github.com/tobisupreme/blogolicious/issues
-[license-shield]: https://img.shields.io/github/license/tobisupreme/blogolicious.svg?style=for-the-badge
-[license-url]: https://github.com/tobisupreme/blogolicious/blob/main/LICENSE.md
-[twitter-shield]: https://img.shields.io/badge/-@tobisupreme-1ca0f1?style=for-the-badge&logo=twitter&logoColor=white&link=https://twitter.com/tobisupreme
-[twitter-url]: https://twitter.com/tobisupreme
+[contributors-shield]: https://img.shields.io/github/contributors/kelzgod/blogolicious.svg?style=for-the-badge
+[contributors-url]: https://github.com/KelzAce/authentication/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/kelzgod/authentication.svg?style=for-the-badge
+[forks-url]: https://github.com/KelzAce/authentication/network/members
+[stars-shield]: https://img.shields.io/github/stars/kelzace/authentication.svg?style=for-the-badge
+[stars-url]: https://github.com/KelzAce/authentication/stargazers
+[issues-shield]: https://img.shields.io/github/issues/kelzace/authentication.svg?style=for-the-badge
+[issues-url]: https://github.com/KelzAce/authentication/issues
+[license-shield]: https://img.shields.io/github/license/kelzace/authentication.svg?style=for-the-badge
+[license-url]: https://github.com/KelzAce/authentication/blob/main/LICENSE.md
+[twitter-shield]: https://img.shields.io/badge/-@kelzgod-1ca0f1?style=for-the-badge&logo=twitter&logoColor=white&link=https://twitter.com/kelzgod
+[twitter-url]: https://twitter.com/kelzgod
 [javascript]: https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1C
 [nestjs]: https://img.shields.io/badge/nestjs-%2523323330.svg?style=for-the-badge&logo=javascript&logoColor=%2523F7DF1C
 [node]: https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white
