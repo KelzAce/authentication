@@ -26,7 +26,7 @@ export class UsersService {
     });
 
     if (userExists) {
-      throw new BadRequestException('Username is not available');
+      throw new BadRequestException('Username already exist');
     }
 
     const hashedPassword = await hash(registerDto.password, 10);
@@ -72,8 +72,8 @@ export class UsersService {
     return this.userModel.find().exec();
   }
 
-  async findOne(id: string): Promise<User> {
-    const user = await this.userModel.findById(id).exec();
+  async findOne(username: string): Promise<User> {
+    const user = await this.userModel.findById(username).exec();
 
     if (!user) {
       throw new NotFoundException('User Not Found');

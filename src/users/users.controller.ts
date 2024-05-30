@@ -29,8 +29,8 @@ export class UsersController {
   }
 
   @Get('all')
-  @UseGuards(AuthenticationGuard, RolesGuard)
-  @RolesDecorator(Roles.ADMIN)
+  // @UseGuards(AuthenticationGuard, RolesGuard)
+  // @RolesDecorator(Roles.ADMIN)
   async findAll(): Promise<User[]> {
     return this.usersService.findAll();
   }
