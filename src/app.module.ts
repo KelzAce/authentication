@@ -8,7 +8,7 @@ import { UsersModule } from './users/users.module';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-    MongooseModule.forRoot(process.env.MONGO_URI),
+    MongooseModule.forRoot('mongodb+srv://ikechigreat:rXaU7cqTQ6KNYs4w@cluster0.3e6rmgc.mongodb.net/'),
     UsersModule,
   ],
   controllers: [],
