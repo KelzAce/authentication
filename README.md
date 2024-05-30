@@ -28,7 +28,7 @@
 
 <!-- About the API -->
 
-## Forexxx
+## Authentication
 
 &mdash; a wonderful Authentication API built by <a href="https://www.github.com/KelzAce">Ikechi</a>.
 

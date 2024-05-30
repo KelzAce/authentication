@@ -1,7 +1,6 @@
 import {
-  BadRequestException,
   Injectable,
-  NotFoundException,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
@@ -9,7 +8,7 @@ import { hash, compare } from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { LoginDto } from './dto/login.dto';
 import { RegisterDto } from './dto/register.dto';
-import { User } from './entities/user.schema';
+import { User } from './schemas/user.schema';
 
 @Injectable()
 export class UsersService {
@@ -21,64 +20,38 @@ export class UsersService {
   async signup(
     registerDto: RegisterDto,
   ): Promise<{ user: User; token: string }> {
-    const userExists = await this.userModel.findOne({
-      username: registerDto.username,
-    });
 
-    if (userExists) {
-      throw new BadRequestException('Username is not available');
-    }
+    const {username, password} = registerDto
 
-    const hashedPassword = await hash(registerDto.password, 10);
-    const createdUser = new this.userModel({
-      ...registerDto,
-      password: hashedPassword,
-    });
+    const hashedPassword = await hash(password, 10);
 
-    const user = await createdUser.save();
-    const token = this.jwtService.sign({
-      username: user.username,
-      sub: user._id,
-    });
+    const user = await this.userModel.create({
+      username,
+      password: hashedPassword
+    })
+    
+    const token = this.jwtService.sign({id: user._id})
 
     return { user, token };
   }
 
   async signin(loginDto: LoginDto): Promise<{ user: User; token: string }> {
-    const user = await this.userModel
-      .findOne({ username: loginDto.username })
-      .select('+password');
+    const {username, password} = loginDto;
 
-    if (!user) {
-      throw new BadRequestException('Bad Credentials');
+    const user = await this.userModel.findOne({username})
+
+    if(!user) {
+      throw new UnauthorizedException('Invalid username or password')
     }
 
-    const matchPassword = await compare(loginDto.password, user.password);
+    const matchPassword = await compare(password, user.password);
 
     if (!matchPassword) {
-      throw new BadRequestException('Bad Credentials');
+      throw new UnauthorizedException('Bad Credentials');
     }
 
-    user.password = undefined;
-    const token = this.jwtService.sign({
-      username: user.username,
-      sub: user._id,
-    });
+   const token = this.jwtService.sign({id: user._id})
 
     return { user, token };
-  }
-
-  async findAll(): Promise<User[]> {
-    return this.userModel.find().exec();
-  }
-
-  async findOne(id: string): Promise<User> {
-    const user = await this.userModel.findById(id).exec();
-
-    if (!user) {
-      throw new NotFoundException('User Not Found');
-    }
-
-    return user;
   }
 }
