@@ -4,21 +4,20 @@
 
 <!-- Project Shields -->
 <div align="center">
-  
-  [![Contributors][contributors-shield]][contributors-url]
+ 
   [![Forks][forks-shield]][forks-url]
   [![Stargazers][stars-shield]][stars-url]
   [![Issues][issues-shield]][issues-url]
   [![MIT License][license-shield]][license-url]
   [![Twitter][twitter-shield]][twitter-url]
+
 </div>
 
 <div>
   <p align="center">
-    <a href="https://github.com/KelzAce/authenticaation#readme"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/KelzAce/authentication#readme"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <!-- <a href="https://blogolicious.cyclic.app/">Demo</a> -->
     ·
     <a href="https://github.com/KelzAce/authentication/issues">Report Bug</a>
     ·
@@ -30,7 +29,7 @@
 
 ## Authentication
 
-&mdash; a wonderful Authentication API built by <a href="https://www.github.com/KelzAce">Ikechi</a>.
+&mdash; a wonderful Blogging API built by <a href="https://github.com/KelzAce/">Ikechi</a>.
 
 <p align="right"><a href="#readme-top">back to top</a></p>
 
@@ -40,7 +39,8 @@
 
 ![Javascript][javascript]
 ![Node.js][node]
-![Nest.js][nest]
+![Nest.js][nestjs]
+![MongoDB][mongodb]
 
 </div>
 
@@ -48,16 +48,22 @@
 
 ---
 
-<!-- Project Requirements -->
-
 ## Requirements
 
 <details>
 
-<summary> <strong>Requirements for the project</strong> </summary>
+<summary> <strong>Requirements for Authentication</strong> </summary>
 
-- [x] A GitHub repository.
-- [x] A Postman collection for API testing and exploration.
+- [x] Users should have a username, password
+
+- [x] A user should be able to sign up and sign in into the app
+
+- [x] Used JWT as authentication strategy and expire the token after 30minutes
+
+- [x] User Password must be at least 8 characters, with at least one symbol. alphanumeric characters(Uppercase and lowercase) and at least a number
+
+- [x] There must be a proper error feedback for each case from the Backend
+
 
 <p align="right"><a href="#readme-top">back to top</a></p>
 
@@ -72,7 +78,7 @@
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/en/download/)
-- [Nest.js](https://nestjs.com/)
+- [MongoDB](https://www.mongodb.com/docs/manual/installation/)
 
 #### Clone this repo
 
@@ -92,32 +98,19 @@ or
 yarn install
 ```
 
-#### Update .env with [example.env](https://github.com/KelzAce/authentication/blob/master/example.env)
+#### Update .env with [example.env](https://github.com/KelzAce/authentication/blob/main/example.env)
 
-#### Run a development server for each application
-
-
-#### Api-gateway
+#### Run a development server
 
 ```sh
 npm run start:dev
 ```
 
-
-#### Auth/User Application
-
-```sh
-npm run start:dev 
-```
-
 or
 
-
-#### Auth/User Application
 ```sh
-yarn run start:dev 
+yarn run start:dev
 ```
-
 
 #### For testing, run
 
@@ -131,32 +124,35 @@ or
 yarn run test
 ```
 
-#### Entities
+### Models
 
 #### User
 
-
-| field       |  data_type         | constraints      |
-| ----------- | ------------------ | ---------------- |
-| id          | number             | required, unique |
-| username    | string             | required         |
-| password    | string             | required         |
-
+| field     | data_type     | constraints      |
+| --------- | ------------- | ---------------- |
+| username  | string        | required, unique |
+| password  | string        | required         |
 
 <p align="right"><a href="#readme-top">back to top</a></p>
 
 ---
 
-### Register a User
+## Usage
 
-- Route: localhost:3000/api/v1/users/register
+### Base URL
+
+- https://authentication-4q9j.onrender.com
+
+### Creating a user
+
+- Route: /api/v1/users/register
 - Method: POST
 
 :point_down: Body
 
 ```json
 {
-  "username": "john@gmail.com",
+  "username": "mightyjoe",
   "password": "Password0!"
 }
 ```
@@ -167,20 +163,20 @@ yarn run test
 {
   "status": "success",
   "data": {
-    "username": "john@gmail.com",
-    "password": "sdhfvbiwegdviqwueiqcbie",
-    "_id": { " "}
+    "username": "mightyjoe",
+    "_id": "6367c296ba7522bd8561e4f6"
+     "token": {token},
   }
 }
 ```
 
 <p align="right"><a href="#readme-top">back to top</a></p>
 
-
+---
 
 ### Logging in
 
-- Route: localhost:3000/api/v1/users/login
+- Route: /api/v1/users/login
 - Method: POST
 
 :point_down: Body
@@ -204,26 +200,59 @@ yarn run test
 
 <p align="right"><a href="#readme-top">back to top</a></p>
 
+
+<!-- License -->
+
+## License
+
+Distributed under the MIT License. See <a href="https://github.com/KelzAce/authentication/blob/main/LICENSE.md">LICENSE</a> for more information.
+
+<p align="right"><a href="#readme-top">back to top</a></p>
+
 ---
 
+<!-- Contact -->
+
+## Contact
+
+- Twitter - [@Ikechi](https://twitter.com/kelgod)
+- email - ikechigreat@gmail.com
+
+Project Link: [Blogolicious](https://github.com/KelzAce/authentication)
+
+<p align="right"><a href="#readme-top">back to top</a></p>
+
+---
+
+<!-- Acknowledgements -->
+
+## Acknowledgements
+
+This project was made possible by:
+
+- [Full Stack open 2022](https://fullstackopen.com/en/)
+- [Dr Austin Wopara's Ze Blog](https://github.com/Ze-Austin/ze-blog)
+- [Othneil Drew's README Template](https://github.com/othneildrew/Best-README-Template)
+- [Ileriayo's Markdown Badges](https://github.com/Ileriayo/markdown-badges)
+- [markdown-emojis](https://github.com/markdown-templates/markdown-emojis)
 
 <p align="right"><a href="#readme-top">back to top</a></p>
 <!-- Markdown Links & Images -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/KelzAce/foreeex.svg?style=for-the-badge
-[contributors-url]: https://github.com/KelzAce/foreeex/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/KelzAce/foreeex.svg?style=for-the-badge
-[forks-url]: https://github.com/KelzAce/foreeex/tree/master/network/members
-[stars-shield]: https://img.shields.io/github/stars/KelzAce/foreeex.svg?style=for-the-badge
-[stars-url]: https://github.com/KelzAce/foreeex/stargazers
-[issues-shield]: https://img.shields.io/github/issues/KelzAce/foreeex.svg?style=for-the-badge
-[issues-url]: https://github.com/KelzAce/foreeex/issues
-[license-shield]: https://img.shields.io/github/license/KelzAce/foreeex.svg?style=for-the-badge
-[license-url]: https://github.com/KelzAce/foreeex/blob/master/LICENSED.md
-[twitter-shield]: https://img.shields.io/badge/-@Kelzgod-1ca0f1?style=for-the-badge&logo=twitter&logoColor=white&link=https://twitter.com/Kelzgod
-[twitter-url]: https://twitter.com/Kelzgod
+[contributors-shield]: https://img.shields.io/github/contributors/tobisupreme/blogolicious.svg?style=for-the-badge
+[contributors-url]: https://github.com/tobisupreme/blogolicious/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/tobisupreme/blogolicious.svg?style=for-the-badge
+[forks-url]: https://github.com/tobisupreme/blogolicious/network/members
+[stars-shield]: https://img.shields.io/github/stars/tobisupreme/blogolicious.svg?style=for-the-badge
+[stars-url]: https://github.com/tobisupreme/blogolicious/stargazers
+[issues-shield]: https://img.shields.io/github/issues/tobisupreme/blogolicious.svg?style=for-the-badge
+[issues-url]: https://github.com/tobisupreme/blogolicious/issues
+[license-shield]: https://img.shields.io/github/license/tobisupreme/blogolicious.svg?style=for-the-badge
+[license-url]: https://github.com/tobisupreme/blogolicious/blob/main/LICENSE.md
+[twitter-shield]: https://img.shields.io/badge/-@tobisupreme-1ca0f1?style=for-the-badge&logo=twitter&logoColor=white&link=https://twitter.com/tobisupreme
+[twitter-url]: https://twitter.com/tobisupreme
 [javascript]: https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1C
+[nestjs]: https://img.shields.io/badge/nestjs-%2523323330.svg?style=for-the-badge&logo=javascript&logoColor=%2523F7DF1C
 [node]: https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white
-[Nest]: https://img.shields.io/badge/nest.js-%23404d59.svg?style=for-the-badge&logo=nest&logoColor=%2361DAFB
-[Docker]: https://img.shields.io/badge/docker.io-%23404d59.svg?style=for-the-badge&logo=nest&logoColor=%2361DAFB
-[Postgres]: https://img.shields.io/badge/POSTGRESQL-%234ea94b.svg?style=for-the-badge&logo=posgresdb&logoColor=white
+[express]: https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB
+[mongodb]: https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white
