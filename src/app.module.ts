@@ -2,14 +2,16 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
 import { UsersModule } from './users/users.module';
+import { AuthModule } from './jwt.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-    MongooseModule.forRoot('mongodb+srv://ikechigreat:rXaU7cqTQ6KNYs4w@cluster0.3e6rmgc.mongodb.net/'),
+    MongooseModule.forRoot(process.env.MONGO_URI),
     UsersModule,
+    AuthModule,
   ],
   controllers: [],
   providers: [],
