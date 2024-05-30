@@ -2,11 +2,8 @@ import { Controller, Get, Post, Body, UseGuards } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
-import { User } from './entities/user.schema';
-import { AuthenticationGuard } from 'src/utility/guards/authentication.guard';
-import { Roles } from 'src/utility/common/user-roles.enum';
-import { RolesGuard } from 'src/utility/guards/roles.guard';
-import { RolesDecorator } from 'src/utility/decorator/roles.decorator';
+import { User } from './schemas/user.schema';
+
 
 @Controller('users')
 export class UsersController {
@@ -28,10 +25,5 @@ export class UsersController {
     return { user, token };
   }
 
-  @Get('all')
-  // @UseGuards(AuthenticationGuard, RolesGuard)
-  // @RolesDecorator(Roles.ADMIN)
-  async findAll(): Promise<User[]> {
-    return this.usersService.findAll();
-  }
+
 }

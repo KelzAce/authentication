@@ -1,7 +1,8 @@
-import { IsEmail, IsString, MinLength, Matches } from 'class-validator';
+import { IsEmail, IsString, MinLength, Matches, IsNotEmpty } from 'class-validator';
 
 export class RegisterDto {
   @IsEmail()
+  @IsNotEmpty()
   username: string;
 
   @IsString()
@@ -10,6 +11,4 @@ export class RegisterDto {
     message: 'Password too weak',
   })
   password: string;
-
-  name?: string;
 }
